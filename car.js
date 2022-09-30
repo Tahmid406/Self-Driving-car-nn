@@ -149,11 +149,9 @@ class Car {
     this.brain.bias_h = this.brain.bias_h.map(mutate);
     this.brain.bias_o = this.brain.bias_o.map(mutate);
   }
-
-  render() {
-    noStroke();
-    if (!this.damaged) fill(this.color);
-    else fill(100);
+  
+    renderBest() {
+    if (!this.damaged) fill(0, 0, 255);
     quad(
       this.polygon[0].x,
       this.polygon[0].y,
@@ -164,6 +162,21 @@ class Car {
       this.polygon[3].x,
       this.polygon[3].y
     );
-    // if (this.sensor) this.sensor.render();
+    this.sensor.render();
+  }
+
+  render() {
+    noStroke();
+    fill(this.color);
+    quad(
+      this.polygon[0].x,
+      this.polygon[0].y,
+      this.polygon[1].x,
+      this.polygon[1].y,
+      this.polygon[2].x,
+      this.polygon[2].y,
+      this.polygon[3].x,
+      this.polygon[3].y
+    );
   }
 }
