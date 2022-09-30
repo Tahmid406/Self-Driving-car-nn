@@ -11,7 +11,7 @@ class Population {
 
     for (let i = 0; i < maxCars; i++) {
       this.cars.push(
-        new Car(road.getLaneCenter(this.lane), height, 8, color(0, 0, 255, 50), "PLAYER")
+        new Car(road.getLaneCenter(this.lane), height, 8, color(0, 0, 255, 20), "PLAYER")
       );
     }
     this.bestCar = this.cars[0];
@@ -49,7 +49,7 @@ class Population {
     let newGenerationCars = [];
     this.lane = floor(random(1, road.laneCount + 1));
     for (let i = 0; i < this.maxCars; i++) {
-      let child = new Car(road.getLaneCenter(this.lane), height, 8, color(0, 0, 255, 50), "PLAYER");
+      let child = new Car(road.getLaneCenter(this.lane), height, 8, color(0, 0, 255, 20), "PLAYER");
       let childBrain = this.naturalSelection().copy();
       child.brain = childBrain;
       child.mutate(this.mutationRate);
@@ -73,7 +73,7 @@ class Population {
       if (this.bestCar.position.y - car.position.y < -400) car.damaged = true;
     });
     this.getBestCar();
-    this.bestCar.sensor.render();
+    this.bestCar.renderBest();
     this.lifespan--;
     if (this.population == 0 || this.lifespan < 0) this.newGeneration();
   }
